@@ -1,5 +1,5 @@
 const CardRecipe = ({recipe}) => {
-    const { title, ingredients, instructions } = recipe;
+    const { pseudo, title, ingredients, instructions } = recipe;
 
     const sliptList = (text) => {
         return text.split(',').map((item, index) => (
@@ -8,7 +8,7 @@ const CardRecipe = ({recipe}) => {
     };
     return ( 
         <li>
-            <h2>{title}</h2>
+            <h2>{title} by {pseudo}</h2>
             <div>
                 <h3>Ingrédients</h3>
                 <ul>

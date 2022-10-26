@@ -1,32 +1,28 @@
 import FormRecipe from "./FormRecipe";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CardRecipe from "./CardRecipe";
+import { useParams } from "react-router-dom";
 
-const RecipeList = ({pseudo}) => {
-    const [recipesSearch, setRecipesSearch] = useState([]);
-    const [recipes, setRecipes] = useState([
-        {
-            id: 1,
-            pseudo: "moi",
-            title: "Pizza",
-            ingredients: "Pâte, tomate, fromage",
-            instructions: "Etaler la pâte, mettre la sauce, mettre le fromage, mettre au four"
-        },
-        {
-            id: 2,
-            pseudo: "pas moi",
-            title: "Pâtes",
-            ingredients: "Pâtes, tomate, fromage",
-            instructions: "Faire cuire les pâtes, mettre la sauce, mettre le fromage"
-        }
-    ]);
+const RecipeList = () => {
+    const pseudo = useParams().pseudo;
+    const [recipes, setRecipes] = useState([]);
 
     const handleChangeSearch = (e) => {
         const { value } = e.target;
-
-        const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(value.toLowerCase()));
-        setRecipesSearch(filteredRecipes);
+        const recipesSearch = recipes.filter((recipe) => recipe.title.toLowerCase().includes(value.toLowerCase()));
+        setRecipes(recipesSearch);
     };
+
+    const getLocalStorage = () => {
+        const recipesLocalStorage = JSON.parse(localStorage.getItem(pseudo));
+        if (recipesLocalStorage) {
+            setRecipes(recipesLocalStorage);
+        }
+    };
+
+    useEffect(() => {
+        getLocalStorage();
+    }, []);
 
     return (
         <div>

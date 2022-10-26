@@ -18,6 +18,7 @@ const FormRecipe = ({pseudo, recipes, setRecipes}) => {
             pseudo: pseudo
         });
         e.target.reset();
+        localStorage.setItem(pseudo, JSON.stringify(recipes));
     };
 
     return ( 
