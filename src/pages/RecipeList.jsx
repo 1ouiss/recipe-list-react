@@ -1,8 +1,8 @@
-import FormRecipe from "./FormRecipe";
+import FormRecipe from "../components/FormRecipe";
 import { useState, useEffect } from "react";
-import CardRecipe from "./CardRecipe";
+import CardRecipe from "../components/CardRecipe";
 import { useParams } from "react-router-dom";
-import SearchRecipe from "./SearchRecipe";
+import SearchRecipe from "../components/SearchRecipe";
 
 const RecipeList = () => {
     const pseudo = useParams().pseudo;

@@ -9,13 +9,14 @@ const FormConnect = (props) => {
         }
     };
     return ( 
-        <div>
+        <div className="container">
             <h1>FormConnect</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="form-connect">
                 <input
                     type="text"
                     value={props.pseudo}
                     onChange={(e) => props.setPseudo(e.target.value)}
+                    placeholder="Votre pseudo"
                 />
                 <input type="submit" value="Se connecter"/>
             </form>

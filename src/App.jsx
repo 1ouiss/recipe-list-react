@@ -1,5 +1,5 @@
-import FormConnect from './components/FormConnect';
-import RecipeList from './components/RecipeList';
+import FormConnect from './pages/FormConnect';
+import RecipeList from './pages/RecipeList';
 import { useState } from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
