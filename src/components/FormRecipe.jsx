@@ -1,19 +1,23 @@
 import { useState } from "react";
 
 const FormRecipe = ({pseudo, recipes, setRecipes}) => {
-    const [recipe, setRecipe] = useState({})
+    const [recipe, setRecipe] = useState({
+        pseudo: pseudo
+    })
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setRecipe({ ...recipe, [name]: value });
-        console.log(recipe);
     };
 
     const handleSubmit = (e, recipe) => {
         e.preventDefault();
+        recipe.id = recipes.length + 1;
         setRecipes([...recipes, recipe]);
-        console.log(recipes);
-        setRecipe({});
+        setRecipe({
+            pseudo: pseudo
+        });
+        e.target.reset();
     };
 
     return ( 
