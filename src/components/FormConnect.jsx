@@ -3,7 +3,6 @@ const FormConnect = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (props.pseudo !== '') {
-            props.setIsConnected(true);
             window.location.href = `/recipes/${props.pseudo}`;
         }else{
             alert('Veuillez renseigner un pseudo');

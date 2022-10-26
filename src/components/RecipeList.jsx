@@ -2,16 +2,11 @@ import FormRecipe from "./FormRecipe";
 import { useState, useEffect } from "react";
 import CardRecipe from "./CardRecipe";
 import { useParams } from "react-router-dom";
+import SearchRecipe from "./SearchRecipe";
 
 const RecipeList = () => {
     const pseudo = useParams().pseudo;
     const [recipes, setRecipes] = useState([]);
-
-    const handleChangeSearch = (e) => {
-        const { value } = e.target;
-        const recipesSearch = recipes.filter((recipe) => recipe.title.toLowerCase().includes(value.toLowerCase()));
-        setRecipes(recipesSearch);
-    };
 
     const getLocalStorage = () => {
         const recipesLocalStorage = JSON.parse(localStorage.getItem(pseudo));
@@ -28,7 +23,7 @@ const RecipeList = () => {
         <div>
             <h1>Hello {pseudo}</h1>
             <FormRecipe pseudo={pseudo} recipes={recipes} setRecipes={setRecipes}/>
-            <input type="search" name="search" onChange={handleChangeSearch}/>
+            <SearchRecipe recipes={recipes} setRecipes={setRecipes}/>
             <ul>
                 {recipes.map((recipe, index) => {
                     if (recipe.pseudo === pseudo) {
