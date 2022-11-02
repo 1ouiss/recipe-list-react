@@ -1,24 +1,23 @@
-const FormConnect = (props) => {
+import { TextField, Button } from "@mui/material";
+
+const FormConnect = ({pseudo, setPseudo}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (props.pseudo !== '') {
-            window.location.href = `/recipes/${props.pseudo}`;
-        }else{
-            alert('Veuillez renseigner un pseudo');
-        }
+        window.location.href = `/recipes/${pseudo}`;
     };
     return ( 
         <div className="container">
             <h1>FormConnect</h1>
-            <form onSubmit={handleSubmit} className="form-connect">
-                <input
-                    type="text"
-                    value={props.pseudo}
-                    onChange={(e) => props.setPseudo(e.target.value)}
-                    placeholder="Votre pseudo"
+            <form onSubmit={handleSubmit}>
+                <TextField
+                    label="Pseudo"
+                    variant="outlined"
+                    value={pseudo}
+                    onChange={(e) => setPseudo(e.target.value)}
+                    className="form-input"
                 />
-                <input type="submit" value="Se connecter"/>
+                <Button variant={pseudo ? "contained" : "disabled"} type="submit">Se connecter</Button>
             </form>
         </div>
 

@@ -1,3 +1,5 @@
+import { TextField } from "@mui/material";
+
 const SearchRecipe = ({recipes, setRecipes}) => {
 
     const handleChangeSearch = (e) => {
@@ -7,9 +9,12 @@ const SearchRecipe = ({recipes, setRecipes}) => {
     };
     
     return ( 
-        <form>
-            <input type="text" placeholder="Rechercher une recette" onChange={handleChangeSearch}/>
-        </form>
+        <TextField
+            id="outlined-basic"
+            label="Rechercher une recette"
+            variant="outlined"
+            onChange={handleChangeSearch}
+        />
      );
 }
  

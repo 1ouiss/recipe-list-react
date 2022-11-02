@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TextField, Button } from "@mui/material";
 
 const FormRecipe = ({pseudo, recipes, setRecipes}) => {
     const [recipe, setRecipe] = useState({
@@ -7,29 +8,48 @@ const FormRecipe = ({pseudo, recipes, setRecipes}) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setRecipe({ ...recipe, [name]: value });
+        setRecipe({
+            ...recipe,
+            [name]: value
+        });
     };
 
     const handleSubmit = (e, recipe) => {
-        e.preventDefault();
+        e.preventDefault()
         recipe.id = recipes.length + 1;
         setRecipes([...recipes, recipe]);
         setRecipe({
             pseudo: pseudo
         });
         e.target.reset();
-        console.log(recipes);
         localStorage.setItem(pseudo, JSON.stringify(recipes));
     };
     
 
-    return ( 
+    return (
         <form onSubmit={(e) => handleSubmit(e, recipe)}>
-            <input type="text" placeholder="Nom de la recette" name="title" onChange={handleChange}/>
-            <input type="text" placeholder="Ingrédients" name="ingredients" onChange={handleChange}/>
-            <input type="hidden" name="pseudo" value={pseudo}/>
-            <input type="text" placeholder="Instructions" name="instructions" onChange={handleChange}/>
-            <input type="submit" value="Ajouter une recette"/>
+            <TextField
+                label="Nom de la recette"
+                variant="outlined"
+                name="title"
+                onChange={handleChange}
+                className="form-input"
+            />
+            <TextField
+                label="Ingrédients"
+                variant="outlined"
+                name="ingredients"
+                onChange={handleChange}
+                className="form-input"
+            />
+            <TextField
+                label="Instructions"
+                variant="outlined"
+                name="instructions"
+                onChange={handleChange}
+                className="form-input"
+            />
+            <Button variant="contained" type="submit">Ajouter la recette</Button>
         </form>
      );
 }

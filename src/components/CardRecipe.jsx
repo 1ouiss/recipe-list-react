@@ -1,4 +1,12 @@
-const CardRecipe = ({recipe}) => {
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
+
+const CardRecipe = ({recipe, setRecipes, recipes}) => {
     const { pseudo, title, ingredients, instructions } = recipe;
 
     const sliptList = (text) => {
@@ -6,22 +14,41 @@ const CardRecipe = ({recipe}) => {
             <li key={index}>{item}</li>
         ));
     };
-    return ( 
-        <li>
-            <h2>{title} by {pseudo}</h2>
-            <div>
-                <h3>Ingrédients</h3>
-                <ul>
+
+    const handleDelete = (e, recipe) => {
+        console.log(e.target);
+        console.log(recipe);
+        const recipesDelete = recipes.filter((item) => item.id !== recipe.id);
+        setRecipes(recipesDelete);
+        localStorage.setItem(pseudo, JSON.stringify(recipesDelete));
+    };
+
+    return (
+        <Card sx={{maxWidth: 345}}>
+            <CardMedia
+                component="img"
+                height="140"
+                image="https://via.placeholder.com/150"
+                alt="green iguana"
+            />
+            <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                    {title} by {pseudo}
+                </Typography>
+                <Typography variant='h6'>Ingrédients</Typography>
+                <Typography variant='body2'>
                     {sliptList(ingredients)}
-                </ul>
-            </div>
-            <div>
-                <h3>Instructions</h3>
-                <ul>
+                </Typography>
+                <Typography variant='h6'>Instructions</Typography>
+                <Typography variant='body2'>
                     {sliptList(instructions)}
-                </ul>
-            </div>
-        </li>
+                </Typography>
+            </CardContent>
+            <CardActions>
+                <Button size="small">Modifier</Button>
+                <Button size="small" onClick={(e) => handleDelete(e, recipe)} color="error">Supprimer</Button>
+            </CardActions>
+        </Card>
      );
 }
  

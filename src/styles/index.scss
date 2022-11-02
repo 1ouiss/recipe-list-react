@@ -1,2 +1,33 @@
 @import './init';
-@import './pages/form-connect';
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem;
+    .form-input{
+        margin: 1rem;
+        width: 20rem;
+    }
+}
+
+.recipe-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    margin: 2rem;
+}
+
+.btn-submit{
+    margin: 1rem;
+}
