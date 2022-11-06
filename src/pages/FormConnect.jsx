@@ -3,11 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const FormConnect = ({pseudo, setPseudo}) => {
-    const [error, setError] = useState(false);
-
-    useEffect(() => {
-        setError(true);
-    }, []);
+    const [error, setError] = useState(true);
 
     const handleSubmit = (e) => {
         e.preventDefault();
