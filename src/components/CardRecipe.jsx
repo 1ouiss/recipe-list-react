@@ -6,8 +6,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 
-const CardRecipe = ({recipe, setRecipes, recipes}) => {
-    const { pseudo, title, ingredients, instructions } = recipe;
+const CardRecipe = ({recipe, setRecipes, recipes, index}) => {
+    const { pseudo, title, ingredients, instructions, image } = recipe;
 
     const sliptList = (text) => {
         return text.split(',').map((item, index) => (
@@ -16,8 +16,6 @@ const CardRecipe = ({recipe, setRecipes, recipes}) => {
     };
 
     const handleDelete = (e, recipe) => {
-        console.log(e.target);
-        console.log(recipe);
         const recipesDelete = recipes.filter((item) => item.id !== recipe.id);
         setRecipes(recipesDelete);
         localStorage.setItem(pseudo, JSON.stringify(recipesDelete));
@@ -28,8 +26,8 @@ const CardRecipe = ({recipe, setRecipes, recipes}) => {
             <CardMedia
                 component="img"
                 height="140"
-                image="https://via.placeholder.com/150"
-                alt="green iguana"
+                image={image}
+                alt={title}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -45,7 +43,6 @@ const CardRecipe = ({recipe, setRecipes, recipes}) => {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Modifier</Button>
                 <Button size="small" onClick={(e) => handleDelete(e, recipe)} color="error">Supprimer</Button>
             </CardActions>
         </Card>

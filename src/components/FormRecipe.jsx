@@ -49,6 +49,13 @@ const FormRecipe = ({pseudo, recipes, setRecipes}) => {
                 onChange={handleChange}
                 className="form-input"
             />
+            <TextField
+                label="Url de l'image"
+                variant="outlined"
+                name="image"
+                onChange={handleChange}
+                className="form-input"
+            />
             <Button variant="contained" type="submit">Ajouter la recette</Button>
         </form>
      );

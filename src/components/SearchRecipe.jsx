@@ -1,11 +1,17 @@
 import { TextField } from "@mui/material";
 
-const SearchRecipe = ({recipes, setRecipes}) => {
+const SearchRecipe = ({recipesSearch, setRecipesSearch, setIsSearch, pseudo}) => {
 
     const handleChangeSearch = (e) => {
         const { value } = e.target;
-        const recipesSearch = recipes.filter((recipe) => recipe.title.toLowerCase().includes(value.toLowerCase()));
-        setRecipes(recipesSearch);
+        setRecipesSearch(JSON.parse(localStorage.getItem(pseudo)))
+        if (value.length > 0) {
+            setIsSearch(true);
+            const listSearch = recipesSearch.filter((recipe) => recipe.title.toLowerCase().includes(value.toLowerCase()));
+            setRecipesSearch(listSearch);
+        }else {
+            setIsSearch(false);
+        }
     };
     
     return ( 
